@@ -1,13 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css';
-import App from './App';
+import Login from './Login';
 import reportWebVitals from './reportWebVitals';
+import SyncList from "./SyncList";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+      <Router>
+          <Routes>
+              <Route path="/" element={<Login />} />
+              <Route path="/synclist" element={<SyncList />} />
+          </Routes>
+      </Router>
   </React.StrictMode>
 );
 
