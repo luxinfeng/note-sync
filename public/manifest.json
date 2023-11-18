@@ -4,17 +4,22 @@
   "icons": {
     "16": "favicon.ico"
   },
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff",
   "version": "1.0",
   "manifest_version": 3,
   "background": {
-    "service_worker": "src/Background.js"
+    "service_worker": "Background.js"
   },
-  "permissions": ["storage"],
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
   "action": {
     "default_popup": "index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["Content.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
   }
 }
