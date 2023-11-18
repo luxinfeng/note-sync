@@ -190,30 +190,34 @@ const SyncList = () => {
                         </div>}
                 </Modal>
 
-                <List
-                    className="demo-loadmore-list"
-                    loading={initLoading}
-                    itemLayout="horizontal"
-                    loadMore={loadMore}
-                    dataSource={list}
-                    renderItem={(item) => (
-                        <List.Item
-                            actions={[<a key="list-loadmore-more">more</a>]}
-                        >
-                            <Skeleton avatar title={false} loading={item.loading} active>
-                                <List.Item.Meta
-                                    avatar={<Avatar src={item.picture.large} />}
-                                    title="有道云笔记"
-                                />
-                                <div style={{ display: 'flex', width: '80%' }}>
-                                    <div style={{ flex: 3, textAlign: 'left' }}>https://www.baidu.com</div>
-                                    <div style={{ flex: 4, textAlign: 'center' }}>2023-10-11 23:59:59</div>
-                                    <div style={{ flex: 3, textAlign: 'right' }}>这篇文章主要讲述了一下一些内容</div>
-                                </div>
-                            </Skeleton>
-                        </List.Item>
-                    )}
-                />
+                <div style={{ display: 'flex', flexDirection: 'column', width: '768px', maxWidth: '100%', margin: 'auto' }}>
+                    <List
+                        className="demo-loadmore-list"
+                        loading={initLoading}
+                        itemLayout="horizontal"
+                        loadMore={loadMore}
+                        dataSource={list}
+                        renderItem={(item) => (
+                            <List.Item
+                                actions={[<a key="list-loadmore-more">more</a>]}
+                            >
+                                <Skeleton avatar title={false} loading={item.loading} active>
+                                    <List.Item.Meta
+                                        avatar={<Avatar src={item.picture.large} />}
+                                    />
+                                    {/* 以下div使用百分比宽度，且其子元素使用flex布局 */}
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
+                                        {/* flex-grow, flex-shrink, flex-basis 属性允许这些子元素根据可用空间伸缩 */}
+                                        <div style={{ flex: 1, textAlign: 'left', padding: '0 10px' }}>有道云笔记</div>
+                                        <div style={{ flex: 1, textAlign: 'left', padding: '0 10px' }}>https://www.baidu.com</div>
+                                        <div style={{ flex: 2, textAlign: 'center', padding: '0 10px' }}>2023-10-11 23:59:59</div>
+                                        <div style={{ flex: 1, textAlign: 'right', padding: '0 10px' }}>这篇文章主要讲述了一下一些内容</div>
+                                    </div>
+                                </Skeleton>
+                            </List.Item>
+                        )}
+                    />
+                </div>
             </Card>
         </>
     );
